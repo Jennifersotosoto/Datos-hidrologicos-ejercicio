@@ -82,9 +82,7 @@ names(inp)<- c("fecha", "Estrella", "Banano")
 attach(inp)
 
 #Agarra el nombre de Estrella y lo asocia actomaticamente con la columna 2
-plot(Estrella, col= "red",
-     xlab = "Fecha",
-     ylab = "Estrella")
+plot(Estrella, col= "red")
 
 
 #Definir el formato del tiempo 
