@@ -1,0 +1,112 @@
+---
+title: "Datos hidrógraficos ejercicio explorativo"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE}
+# Carga de graphics
+library(graphics)
+
+# Carga de ggplot2
+library(ggplot2)
+
+# Carga de plotly
+library(plotly)
+
+# Carga de dplyr
+library(dplyr)
+```
+```{r}
+# Importar los datos  
+
+inp <- read.csv("FDC.csv",na.strings = "")
+
+#Las primeras 6 filas del archivo
+head(inp)
+
+```
+
+```{r}
+# Preguntar la longitud de las serie, cuantas filas y cuantas columnas tiene 
+dim(inp)
+
+# Preguntar si hay N/A en el archivo, en casos completos
+
+inp[!complete.cases(inp),]
+
+
+#Elimina los casos faltantes 
+# newinp <- na.omit(inp)
+```
+
+
+### Graficos del crecimiento de los caudales en los rios, como respuesta a las lluvias 
+```{r}
+# Visualizar los datos  del rio estrella  
+plot(inp[,2], type = "l",col="blue")
+
+#visualizar los datos del río banano
+lines(inp[,3], col="green")
+
+
+#Resumen de los datos para las columnas de 2 a 3
+summary(inp[,2:3])
+
+#Visualizar el histograma del río Estrella
+hist(inp[,2])
+
+#Visualizar el histograma del río Banano
+hist(inp[,3])
+
+#Asignar nombres 
+names(inp)<- c("fecha", "Estrella", "Banano")
+
+#Para trabajar con el nombre directamente 
+attach(inp)
+
+#Agarra el nombre de Estrella y lo asocia actomaticamente con la columna 2
+plot(Estrella)
+
+#Definir el formato del tiempo 
+Tempdate <- strptime(inp[,1],format = "%d/%m/%Y")
+
+# El volumen total de los ríos al año
+MAQ_Estrella <- tapply(Estrella, format(Tempdate, format = "%Y"), FUN = sum) 
+MAQ_Banano <- tapply(Banano, format(Tempdate, format = "%Y"), FUN = sum) 
+
+
+#Exportar los volumenes del caudal de los ríos
+write.csv(rbind(MAQ_Estrella, MAQ_Banano), file="MAQ.csv")
+
+#Visualizar los valores anuales de los caduales 
+plot(MAQ_Banano, ylim = c(100,3000))
+lines(MAQ_Estrella, col=2)
+
+# El volumen del caudal acumulado mensualmente 
+MAQ_Estrella <- tapply(Estrella, format(Tempdate, format = "%m"), FUN = sum) 
+MAQ_Banano <- tapply(Banano, format(Tempdate, format = "%m"), FUN = sum) 
+
+```
+## Analisis de correlación
+```{r}
+#Correlacionar el río Banano y el  río Estrella para ver si estas cuencas vecinas tienen una relación climaticamente cuantificable 
+
+corinp <-cor(inp[,2:3], method= "spearman")
+
+#Visualizar la correlación entre rios
+plot(Estrella, Banano)
+
+#Generar un modelo de regresión lineal 
+inp.lm <- lm(inp[,2]~ inp[,3], data = inp) 
+summary(inp.lm)
+
+#Visualizar el modelo de regresión lineal 
+plot(inp.lm)
+
+```
+
+
