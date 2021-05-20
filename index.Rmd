@@ -47,20 +47,33 @@ inp[!complete.cases(inp),]
 ### Graficos del crecimiento de los caudales en los rios, como respuesta a las lluvias 
 ```{r}
 # Visualizar los datos  del rio estrella  
-plot(inp[,2], type = "l",col="blue")
+plot(inp[,2], type = "l",
+     col= "yellow",
+     xlab = "Fecha",
+     ylab = "Crecimiento de los caudales ")
+
 
 #visualizar los datos del río banano
 lines(inp[,3], col="green")
+
 
 
 #Resumen de los datos para las columnas de 2 a 3
 summary(inp[,2:3])
 
 #Visualizar el histograma del río Estrella
-hist(inp[,2])
+hist(inp[, 2], 
+     col = "blue", 
+     xlab = "Rango absoluto",
+     ylab = " Caudal ml por día",
+     main = "Clases de agua por día, contra del agua de caudal en el río Estrella")
 
 #Visualizar el histograma del río Banano
-hist(inp[,3])
+hist(inp[,3], 
+     col = "purple", 
+     xlab = "Rango absoluto",
+     ylab = "Caudal Ml por día",
+     main = "Clases de agua por día, contra del agua de caudal en el río Banano")
 
 #Asignar nombres 
 names(inp)<- c("fecha", "Estrella", "Banano")
@@ -69,7 +82,10 @@ names(inp)<- c("fecha", "Estrella", "Banano")
 attach(inp)
 
 #Agarra el nombre de Estrella y lo asocia actomaticamente con la columna 2
-plot(Estrella)
+plot(Estrella, col= "red",
+     xlab = "Fecha",
+     ylab = "Estrella")
+
 
 #Definir el formato del tiempo 
 Tempdate <- strptime(inp[,1],format = "%d/%m/%Y")
@@ -83,7 +99,7 @@ MAQ_Banano <- tapply(Banano, format(Tempdate, format = "%Y"), FUN = sum)
 write.csv(rbind(MAQ_Estrella, MAQ_Banano), file="MAQ.csv")
 
 #Visualizar los valores anuales de los caduales 
-plot(MAQ_Banano, ylim = c(100,3000))
+plot(MAQ_Banano, ylim = c(100,3000), col= "orange", main= "Valores anules de los caudales")
 lines(MAQ_Estrella, col=2)
 
 # El volumen del caudal acumulado mensualmente 
@@ -98,14 +114,18 @@ MAQ_Banano <- tapply(Banano, format(Tempdate, format = "%m"), FUN = sum)
 corinp <-cor(inp[,2:3], method= "spearman")
 
 #Visualizar la correlación entre rios
-plot(Estrella, Banano)
+plot(Estrella, Banano, col= "purple", main= "Correlación entre Río Estrella y Río Banano")
+```
 
+
+### Modelo de regresión lineal
+```{r}
 #Generar un modelo de regresión lineal 
 inp.lm <- lm(inp[,2]~ inp[,3], data = inp) 
 summary(inp.lm)
 
 #Visualizar el modelo de regresión lineal 
-plot(inp.lm)
+plot(inp.lm, col= "green", main= "Modelo de regresión lineal")
 
 ```
 
