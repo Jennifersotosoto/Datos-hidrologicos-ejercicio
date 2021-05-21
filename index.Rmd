@@ -81,7 +81,7 @@ names(inp)<- c("fecha", "Estrella", "Banano")
 #Para trabajar con el nombre directamente 
 attach(inp)
 
-#Agarra el nombre de Estrella y lo asocia actomaticamente con la columna 2
+#Agarra el nombre de Estrella y lo asocia automáticamente con la columna 2
 plot(Estrella, col= "red")
 
 
@@ -105,13 +105,13 @@ MAQ_Estrella <- tapply(Estrella, format(Tempdate, format = "%m"), FUN = sum)
 MAQ_Banano <- tapply(Banano, format(Tempdate, format = "%m"), FUN = sum) 
 
 ```
-## Analisis de correlación
+## Análisis de correlación
 ```{r}
 #Correlacionar el río Banano y el  río Estrella para ver si estas cuencas vecinas tienen una relación climaticamente cuantificable 
 
 corinp <-cor(inp[,2:3], method= "spearman")
 
-#Visualizar la correlación entre rios
+#Visualizar la correlación entre ríos
 plot(Estrella, Banano, col= "purple", main= "Correlación entre Río Estrella y Río Banano")
 ```
 
