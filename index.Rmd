@@ -63,10 +63,10 @@ summary(inp[,2:3])
 
 #Visualizar el histograma del río Estrella
 hist(inp[, 2], 
-     col = "blue", 
+     col = "sky blue", 
      xlab = "Rango absoluto",
      ylab = " Caudal ml por día",
-     main = "Clases de agua por día, contra del agua de caudal en el río Estrella")
+     main = "Clases de agua por día, contra el agua del caudal en el río Estrella")
 
 #Visualizar el histograma del río Banano
 hist(inp[,3], 
