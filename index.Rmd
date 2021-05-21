@@ -31,7 +31,7 @@ head(inp)
 ```
 
 ```{r}
-# Preguntar la longitud de las series, cuantas filas y cuantas columnas tiene 
+# Preguntar la longitud de las series, cuántas filas y cuántas columnas tiene 
 dim(inp)
 
 # Preguntar si hay N/A en el archivo, en casos completos
@@ -46,9 +46,9 @@ inp[!complete.cases(inp),]
 
 ### Gráficos del crecimiento de los caudales en los ríos, como respuesta a las lluvias 
 ```{r}
-# Visualizar los datos  del río estrella  
+# Visualizar los datos  del río Estrella  
 plot(inp[,2], type = "l",
-     col= "yellow",
+     col= "orange",
      xlab = "Fecha",
      ylab = "Crecimiento de los caudales ")
 
@@ -97,7 +97,7 @@ MAQ_Banano <- tapply(Banano, format(Tempdate, format = "%Y"), FUN = sum)
 write.csv(rbind(MAQ_Estrella, MAQ_Banano), file="MAQ.csv")
 
 #Visualizar los valores anuales de los caduales 
-plot(MAQ_Banano, ylim = c(100,3000), col= "orange", main= "Valores anules de los caudales")
+plot(MAQ_Banano, ylim = c(100,3000), col= "orange", main= "Valores anuales de los caudales")
 lines(MAQ_Estrella, col=2)
 
 # El volumen del caudal acumulado mensualmente 
@@ -107,7 +107,7 @@ MAQ_Banano <- tapply(Banano, format(Tempdate, format = "%m"), FUN = sum)
 ```
 ## Análisis de correlación
 ```{r}
-#Correlacionar el río Banano y el  río Estrella para ver si estas cuencas vecinas tienen una relación climaticamente cuantificable 
+#Correlacionar el río Banano y el  río Estrella para ver si estas cuencas vecinas tienen una relación climáticamente cuantificable 
 
 corinp <-cor(inp[,2:3], method= "spearman")
 
