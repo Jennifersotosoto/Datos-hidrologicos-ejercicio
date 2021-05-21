@@ -73,7 +73,7 @@ hist(inp[,3],
      col = "purple", 
      xlab = "Rango absoluto",
      ylab = "Caudal ml por día",
-     main = "Clases de agua por día, contra del agua de caudal en el río Banano")
+     main = "Clases de agua por día, contra el agua del caudal en el río Banano")
 
 #Asignar nombres 
 names(inp)<- c("fecha", "Estrella", "Banano")
