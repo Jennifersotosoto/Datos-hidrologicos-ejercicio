@@ -192,7 +192,7 @@ head(inp)</code></pre>
 ## 4 6/25/1973                7.80             19.68
 ## 5 6/26/1973                7.72             15.17
 ## 6 6/27/1973                7.83             23.14</code></pre>
-<pre class="r"><code># Preguntar la longitud de las serie, cuantas filas y cuantas columnas tiene 
+<pre class="r"><code># Preguntar la longitud de las series, cuantas filas y cuantas columnas tiene 
 dim(inp)</code></pre>
 <pre><code>## [1] 3845    3</code></pre>
 <pre class="r"><code># Preguntar si hay N/A en el archivo, en casos completos
@@ -202,9 +202,9 @@ inp[!complete.cases(inp),]</code></pre>
 ## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
 <pre class="r"><code>#Elimina los casos faltantes 
 # newinp &lt;- na.omit(inp)</code></pre>
-<div id="graficos-del-crecimiento-de-los-caudales-en-los-rios-como-respuesta-a-las-lluvias" class="section level3">
-<h3>Graficos del crecimiento de los caudales en los rios, como respuesta a las lluvias</h3>
-<pre class="r"><code># Visualizar los datos  del rio estrella  
+<div id="gráficos-del-crecimiento-de-los-caudales-en-los-ríos-como-respuesta-a-las-lluvias" class="section level3">
+<h3>Gráficos del crecimiento de los caudales en los ríos, como respuesta a las lluvias</h3>
+<pre class="r"><code># Visualizar los datos  del río estrella  
 plot(inp[,2], type = &quot;l&quot;,
      col= &quot;yellow&quot;,
      xlab = &quot;Fecha&quot;,

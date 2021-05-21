@@ -31,7 +31,7 @@ head(inp)
 ```
 
 ```{r}
-# Preguntar la longitud de las serie, cuantas filas y cuantas columnas tiene 
+# Preguntar la longitud de las series, cuantas filas y cuantas columnas tiene 
 dim(inp)
 
 # Preguntar si hay N/A en el archivo, en casos completos
@@ -44,9 +44,9 @@ inp[!complete.cases(inp),]
 ```
 
 
-### Graficos del crecimiento de los caudales en los rios, como respuesta a las lluvias 
+### Gráficos del crecimiento de los caudales en los ríos, como respuesta a las lluvias 
 ```{r}
-# Visualizar los datos  del rio estrella  
+# Visualizar los datos  del río estrella  
 plot(inp[,2], type = "l",
      col= "yellow",
      xlab = "Fecha",
