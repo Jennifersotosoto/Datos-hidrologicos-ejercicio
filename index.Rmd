@@ -72,7 +72,7 @@ hist(inp[, 2],
 hist(inp[,3], 
      col = "purple", 
      xlab = "Rango absoluto",
-     ylab = "Caudal Ml por día",
+     ylab = "Caudal ml por día",
      main = "Clases de agua por día, contra del agua de caudal en el río Banano")
 
 #Asignar nombres 
